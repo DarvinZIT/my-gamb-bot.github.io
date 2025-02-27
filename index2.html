@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Стратегии</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .buttons-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .strategy-btn {
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .strategy-btn:hover {
+            transform: scale(1.05);
+        }
+        .loader {
+            display: none;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        .content {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons-container">
+        <button class="strategy-btn" onclick="showImage(1)">Стратегия 1</button>
+        <button class="strategy-btn" onclick="showImage(2)">Стратегия 2</button>
+        <button class="strategy-btn" onclick="showImage(3)">Стратегия 3</button>
+        <button class="strategy-btn" onclick="showImage(4)">Стратегия 4</button>
+    </div>
+
+    <div class="content">
+        <div class="loader" id="loader"></div>
+        <div id="imageContainer"></div>
+    </div>
+
+    <script>
+        // URL изображений для каждой стратегии
+        const strategyImages = {
+            1: 'https://picsum.photos/300/200?random=1',
+            2: 'https://picsum.photos/300/200?random=2',
+            3: 'https://picsum.photos/300/200?random=3',
+            4: 'https://picsum.photos/300/200?random=4'
+        };
+
+        function showImage(strategyNumber) {
+            const loader = document.getElementById('loader');
+            const container = document.getElementById('imageContainer');
+            
+            // Показать загрузку
+            loader.style.display = 'block';
+            container.innerHTML = '';
+
+            // Имитация загрузки (можно установить реальный запрос)
+            setTimeout(() => {
+                loader.style.display = 'none';
+                container.innerHTML = `
+                    <img src="${strategyImages[strategyNumber]}" 
+                         alt="Стратегия ${strategyNumber}"
+                         onerror="this.src='https://via.placeholder.com/300/200'">
+                `;
+            }, 2000);
+        }
+
+        // Инициализация Telegram Web App
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+    </script>
+</body>
+</html>
