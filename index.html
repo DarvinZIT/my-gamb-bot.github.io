@@ -47,6 +47,10 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             margin-top: 20px;
         }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -67,15 +71,7 @@
     </div>
 
     <script>
-        // URL изображений для каждой стратегии
-        const strategyImages = {
-            1: 'https://picsum.photos/300/200?random=1',
-            2: 'https://picsum.photos/300/200?random=2',
-            3: 'https://picsum.photos/300/200?random=3',
-            4: 'https://picsum.photos/300/200?random=4'
-        };
-
-        function showImage(strategyNumber) {
+        function showImage() {
             const loader = document.getElementById('loader');
             const container = document.getElementById('imageContainer');
             
@@ -83,12 +79,13 @@
             loader.style.display = 'block';
             container.innerHTML = '';
 
-            // Имитация загрузки (можно установить реальный запрос)
+            // Имитация загрузки
             setTimeout(() => {
                 loader.style.display = 'none';
                 container.innerHTML = `
-                    <img src="${strategyImages[strategyNumber]}" 
-                         alt="Стратегия ${strategyNumber}"
+                    <h2>Игра: Майнер</h2>
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTYwbjRyMHM2dzV5MGZreGE2cWN2dWJpaGhkbnh1NXdybnVoZXhzdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JcEbzHIM7lJBe/giphy.gif"
+                         alt="Обезьяна-майнер"
                          onerror="this.src='https://via.placeholder.com/300/200'">
                 `;
             }, 2000);
